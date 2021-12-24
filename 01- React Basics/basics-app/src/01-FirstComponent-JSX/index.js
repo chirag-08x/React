@@ -48,7 +48,10 @@ function Greeting() {
 
 // Appending the greeting element inside the root tag in ./public/index.html
 // We must close the Greeting component with "/"
-ReactDom.render(<Greeting />, document.getElementById("root"));
+
+// ReactDom.render(<Greeting />, document.getElementById("root"));
+
+export default Greeting;
 
 // Works same as the above function, won't be using this syntax, the above code is basically getting converted in the below syntax using Babel when we compile it, but since we are using babel in node_modules, it converts it automatially, Browser can't read JSX, it has to convert JSX into vanilla JS.
 /*

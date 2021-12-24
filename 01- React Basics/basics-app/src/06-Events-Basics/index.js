@@ -39,7 +39,7 @@ function BookList() {
   );
 }
 
-// onClick, onMouseOver
+// onClick, onMouseOver, onChange
 // Syntax ==> eventName={ (arguments) => do something }
 const Book = ({ img, author, title }) => {
   const clickHandler = () => {
@@ -65,7 +65,14 @@ const Book = ({ img, author, title }) => {
       </button>
 
       {/* If we invoke the complexExample function like this, we are right away executing that function, i.e. it will print author without event clicking on it */}
+
       {/* <button type="button" onClick={complexExample(author)}> Complex Example </button> */}
+
+      {/* 
+      If we have to pass some arguments in the function of onClick, we set it as an arrow function, or if we are just calling it not executing it we can pass it directly. Example - 
+       onClick={() => complexExample(author)} if we have to pass author name else
+       onClick={complexExample}
+      */}
 
       {/* Fix for the above problem */}
       <button type="button" onClick={() => complexExample(author)}>
@@ -80,4 +87,6 @@ const Book = ({ img, author, title }) => {
   );
 };
 
-ReactDom.render(<BookList />, document.getElementById("root"));
+// ReactDom.render(<BookList />, document.getElementById("root"));
+
+export default BookList;

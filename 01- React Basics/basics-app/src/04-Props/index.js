@@ -30,6 +30,7 @@ function BookList() {
         author={firstBook.author}
       >
         {/* Props children goes here */}
+        {/* These are the children/element that are accessed using props.children. */}
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint
           distinctio facilis molestiae. Non, atque eaque.

@@ -63,4 +63,6 @@ const Book = ({ img, author, title }) => {
   );
 };
 
-ReactDom.render(<BookList />, document.getElementById("root"));
+// ReactDom.render(<BookList />, document.getElementById("root"));
+
+export default BookList;

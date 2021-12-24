@@ -15,4 +15,6 @@ function Greeting() {
 const Person = () => <h2>Chirag Agrawal</h2>;
 const Message = () => <p>This is my message</p>;
 
-ReactDom.render(<Greeting />, document.getElementById("root"));
+// ReactDom.render(<Greeting />, document.getElementById("root"));
+
+export default Greeting;
