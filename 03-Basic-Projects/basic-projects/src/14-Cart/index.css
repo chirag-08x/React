@@ -62,9 +62,9 @@ h3 {
 h4 {
   font-size: 0.875rem;
 }
-p {
+/* p {
   margin-bottom: 1.25rem;
-}
+} */
 @media screen and (min-width: 800px) {
   h1 {
     font-size: 4rem;
@@ -112,4 +112,124 @@ p {
 .item-image {
   width: 200px;
   height: 200px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.nav-items {
+  width: 90vw;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar {
+  background-color: var(--clr-primary);
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  color: white;
+  font-size: 2rem;
+}
+
+.bag {
+  color: white;
+  position: relative;
+}
+
+.bag-icon {
+  font-size: 2rem;
+}
+
+.items-number {
+  position: absolute;
+  top: -10px;
+  right: -15px;
+  background-color: #50a3df;
+  border-radius: 50%;
+  padding: 3px 10px;
+  font-size: 1.025rem;
+}
+
+.cart-container {
+  padding: 5rem 0;
+  width: 90vw;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.item-img {
+  width: 80px;
+}
+
+.single-item {
+  display: grid;
+  grid-template-columns: 80px auto 50px;
+}
+
+.cart-items {
+  display: grid;
+  grid-gap: 2rem 0;
+  margin-bottom: 3rem;
+}
+
+.title {
+  color: black;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+h5 {
+  text-transform: capitalize;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.clear-btn {
+  display: block;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+.subtitle {
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.amount {
+  text-align: center;
+}
+
+.change {
+  display: block;
+  margin: 0 auto;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: var(--clr-grey-5);
+  letter-spacing: 1px;
+  font-size: 1.0001rem;
 }

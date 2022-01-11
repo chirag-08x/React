@@ -1,52 +1,58 @@
-import React, { useState } from "react";
+import React, { useReducer, useEffect } from "react";
 import data from "./data";
-const cartContext = React.createContext();
+import reducer from "./reducer";
+
+const AppContext = React.createContext();
+
+const defaultState = {
+  items: data,
+  totalAmount: 0,
+};
 
 const AppProvider = ({ children }) => {
-  const [items, setItems] = useState(data);
+  const [state, dispatch] = useReducer(reducer, defaultState);
 
-  const increaseAmount = (id) => {
-    items.map((item) => {
-      if (item.id === id) {
-        item.amount += 1;
-      }
-    });
-    setItems([...items]);
-  };
-
-  const decreaseAmount = (id, amount) => {
-    if (amount == 1) {
-      const newItems = items.filter((item) => item.id !== id);
-      setItems(newItems);
-    } else {
-      items.map((item) => {
-        if (item.id === id) {
-          item.amount -= 1;
-          setItems([...items]);
-        }
-      });
-    }
+  const removeItem = (id) => {
+    dispatch({ type: "REMOVE_ITEM", payload: id });
   };
 
   const clearCart = () => {
-    setItems([]);
+    dispatch({ type: "CLEAR_CART" });
   };
 
-  let sum = 0;
-  let x = items.map((item) => {
-    return (sum += item.price * item.amount);
-  });
+  const toggleAmount = (id, type) => {
+    dispatch({ type: "TOGGLE_AMOUNT", payload: { id, type } });
+  };
 
-  sum = Math.round(sum * 100) / 100;
+  useEffect(() => {
+    dispatch({ type: "GET_TOTAL" });
+  }, [state.items]);
 
-  console.log(sum);
   return (
-    <cartContext.Provider
-      value={{ items, increaseAmount, decreaseAmount, sum, clearCart }}
+    <AppContext.Provider
+      value={{
+        state,
+        dispatch,
+        removeItem,
+        toggleAmount,
+        clearCart,
+      }}
     >
       {children}
-    </cartContext.Provider>
+    </AppContext.Provider>
   );
 };
 
-export { AppProvider, cartContext };
+export { AppContext, AppProvider };
+
+//   const increaseAmount = (id) => {
+//     dispatch({ type: "INCREASE_AMOUNT", payload: id });
+//   };
+
+//   const decreaseAmount = (id, amount) => {
+//     if (amount === 1) {
+//       dispatch({ type: "REMOVE_ITEM", payload: id });
+//     } else {
+//       dispatch({ type: "DECREASE_AMOUNT", payload: id });
+//     }
+//   };

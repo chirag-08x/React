@@ -1,8 +1,7 @@
-import React from "react";
 import Navbar from "./Navbar";
-import CartContainer from "./CartContainer";
 import { AppProvider } from "./context";
 import "./index.css";
+import CartContainer from "./CartContainer";
 
 const App = () => {
   return (

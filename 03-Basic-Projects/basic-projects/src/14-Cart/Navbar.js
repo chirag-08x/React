@@ -1,17 +1,18 @@
-import React, { useContext } from "react";
 import { FaShoppingBag } from "react-icons/fa";
-import { cartContext } from "./context";
+import { AppContext } from "./context";
+import { useContext } from "react";
 
 const Navbar = () => {
-  const { items } = useContext(cartContext);
+  const { state } = useContext(AppContext);
   return (
     <nav className="navbar">
-      <h1 className="title">UseReducer</h1>
-
-      <div className="total-items">
-        <FaShoppingBag />
-        <p className="items-number">{items.length}</p>
-      </div>
+      <article className="nav-items">
+        <h1>UseReducer</h1>
+        <article className="bag">
+          <FaShoppingBag className="bag-icon" />
+          <p className="items-number">{state.items.length}</p>
+        </article>
+      </article>
     </nav>
   );
 };
