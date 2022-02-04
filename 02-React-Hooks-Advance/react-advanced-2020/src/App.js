@@ -1,10 +1,10 @@
 import React from "react";
-import ContextAPI from "./tutorial/8-useContext/1-context-api";
+import UseMemoHook from "./tutorial/12-memo-useMemo-useCallback/useMemo.jsx";
 
 function App() {
   return (
     <div className="container">
-      <ContextAPI></ContextAPI>
+      <UseMemoHook></UseMemoHook>
     </div>
   );
 }

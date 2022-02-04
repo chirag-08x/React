@@ -1,5 +1,5 @@
 import React, { useState, useReducer } from "react";
-import Modal from "./Modal";
+import Modal from "./Modal.jsx";
 import { data } from "../../data";
 
 // useReducer is usually preferable to useState when you have complex state logic that involves multiple  sub-values or when the next state depends on the previous. We must return a state from reducer function else it will return back an error.
