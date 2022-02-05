@@ -67,6 +67,8 @@ a {
 img {
   width: 100%;
   display: block;
+  object-fit: cover;
+  height: 100%;
 }
 
 /* 
@@ -131,3 +133,230 @@ Buttons
 Navbar
 ======
 */
+
+.section-center {
+  width: 90vw;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+.navbar {
+  background-color: var(--mainWhite);
+  box-shadow: var(--darkShadow);
+  padding: 1.5rem 0;
+}
+
+.navbar-center {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0 2.5rem;
+}
+
+.nav-link > * {
+  font-size: 1.25rem;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+
+/* Search Bar */
+
+.search-center {
+  max-width: 40rem;
+  background-color: var(--mainWhite);
+  margin: 6rem auto;
+  padding: 2rem;
+  box-shadow: var(--darkShadow);
+}
+
+.form-title {
+  text-transform: capitalize;
+  font-size: 1.085rem;
+  color: var(--primaryColor);
+}
+
+input {
+  width: 100%;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  font-size: 1.085rem;
+  border: 2px solid black;
+}
+
+/* About */
+.about-center {
+  margin-top: 5rem;
+}
+
+.about-title {
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+
+.about-text {
+  text-align: start;
+  max-width: 45rem;
+  margin: 0 auto;
+  font-size: 1.025rem;
+  line-height: 2;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+/* Error Page */
+.error-center {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.error-title {
+  text-transform: capitalize;
+}
+
+.home-link {
+  background-color: var(--primaryColor);
+  color: var(--mainWhite);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+}
+
+.error-link:hover {
+  opacity: 0.5;
+}
+
+/* Cocktails */
+h1 {
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 2rem;
+}
+
+.cocktails {
+  padding: 4rem 0;
+  display: grid;
+  gap: 4rem 2rem;
+}
+
+.drink-img-container {
+  height: 20rem;
+}
+
+.single-drink {
+  background-color: var(--mainWhite);
+  box-shadow: var(--lightShadow);
+}
+
+.drink-info {
+  padding: 1rem;
+}
+
+.drink-name {
+  text-align: start;
+  margin-bottom: 0.5rem;
+}
+
+.glass-name {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.drink-type {
+  color: var(--darkGrey);
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.drink-link {
+  background-color: var(--primaryColor);
+  color: var(--mainWhite);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.88rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.3rem;
+}
+
+.drink-link:hover {
+  opacity: 0.5;
+}
+
+@media screen and (min-width: 768px) {
+  .cocktails {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .cocktails {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.not-found {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* Single Drink */
+
+.btn-container {
+  margin: 3rem auto;
+  text-align: center;
+}
+
+.btn-container h1 {
+  margin-top: 1rem;
+}
+
+.single-center {
+  padding: 0 1rem;
+}
+
+.drink-details {
+  margin: 2rem 0;
+}
+
+.cocktail-info {
+  margin-top: 2rem;
+}
+
+span {
+  background-color: var(--primaryLightColor);
+  text-transform: capitalize;
+  color: var(--primaryColor);
+  font-size: 1rem;
+  border-radius: 0.3rem;
+  letter-spacing: initial;
+  padding: 0.2rem 0.5rem;
+  margin-right: 1rem;
+}
+
+.cocktail-info > h2 {
+  font-size: 1rem;
+  letter-spacing: initial;
+}
+
+@media screen and (min-width: 992px) {
+  .drink-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+  }
+
+  .drink-details > img {
+    width: 30rem;
+  }
+}
