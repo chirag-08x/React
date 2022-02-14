@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-export const API_ENDPOINT = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}`;
+const API_ENDPOINT = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}`;
 
 const useFetch = (urlParams) => {
   const [loading, setLoading] = useState(false);
