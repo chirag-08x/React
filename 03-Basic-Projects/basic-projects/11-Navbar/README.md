@@ -1,3 +1,3 @@
 ### Navbar
 
-A simple Navbar built using React.
+> A simple Navbar built using React.

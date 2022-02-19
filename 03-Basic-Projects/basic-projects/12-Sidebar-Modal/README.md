@@ -1,3 +1,3 @@
 ### Sidebar & Modal
 
-A simple Sidebar and Modal App, built using React.
+> A simple Sidebar and Modal App, built using React.
