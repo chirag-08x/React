@@ -16,7 +16,7 @@ function App() {
   const [photos, setPhotos] = useState([]);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
-  const mounted = useRef(false);
+  // const mounted = useRef(false);
 
   const fetchImages = async () => {
     setLoading(true);
@@ -30,6 +30,7 @@ function App() {
     try {
       const response = await fetch(url);
       const data = await response.json();
+      console.log(data);
       setPhotos((oldPhotos) => {
         if (query && page === 1) {
           return data.results;
@@ -51,12 +52,12 @@ function App() {
     // eslint-disable-next-line
   }, [page]);
 
-  useEffect(() => {
-    if (!mounted.current) {
-      return;
-    }
-    console.log("Hello");
-  }, []);
+  // useEffect(() => {
+  //   if (!mounted.current) {
+  //     return;
+  //   }
+  //   console.log("Hello");
+  // }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -67,6 +68,17 @@ function App() {
     }
     setPage(1);
   };
+
+  const event = () => {
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) {
+      setPage(page + 1);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", event);
+    return () => window.removeEventListener("scroll", event);
+  }, []);
 
   return (
     <main className="photos">
