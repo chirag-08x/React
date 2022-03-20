@@ -18,13 +18,31 @@ function App() {
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
 
-  const fetchImages = async (url) => {
+  const fetchImages = async () => {
     setLoading(true);
+    let url;
+    let urlPage = `&page=${page}`;
+    let urlQuery = `&query=${query}`;
+    if (query) {
+      url = `${searchUrl}${clientID}${urlPage}${urlQuery}`;
+    } else {
+      url = `${mainUrl}${clientID}${urlPage}`;
+    }
     try {
       const response = await fetch(url);
       const data = await response.json();
       console.log(data);
-      setPhotos((oldPhotos) => [...oldPhotos, ...data]);
+      setPhotos((oldPhotos) => {
+        if (query) {
+          if (page === 1) {
+            return [...data.results];
+          } else {
+            return [...oldPhotos, ...data.results];
+          }
+        } else {
+          return [...oldPhotos, ...data];
+        }
+      });
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -33,12 +51,14 @@ function App() {
   };
 
   useEffect(() => {
-    const currURL = `${mainUrl}${clientID}&per_page=10&page=${page}`;
-    fetchImages(currURL);
+    fetchImages();
   }, [page]);
 
   const event = () => {
-    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 5) {
+    if (
+      window.innerHeight + window.scrollY >=
+      document.body.scrollHeight - 10
+    ) {
       setPage((prev) => prev + 1);
     }
   };
@@ -48,20 +68,27 @@ function App() {
     return () => window.removeEventListener("scroll", event);
   }, []);
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!query) return;
+    if (page === 1) {
+      fetchImages();
+    }
+    setPage(1);
+  };
 
   return (
     <Wrapper>
       <section className="section-center">
         <section className="search">
-          <form className="form" onSubmit={handleSubmit}>
+          <form className="form">
             <input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="search"
             />
-            <button onClick={(e) => e.preventDefault()}>
+            <button onClick={handleSubmit}>
               <FaSearch />
             </button>
           </form>
@@ -69,8 +96,8 @@ function App() {
 
         <section className="photos-container">
           <div className="photos">
-            {photos.map((photo) => (
-              <Photo key={photo.id} {...photo} />
+            {photos.map((photo, index) => (
+              <Photo key={index} {...photo} />
             ))}
           </div>
           {loading && <h2 className="loading">Loading...</h2>}
@@ -115,10 +142,11 @@ const Wrapper = styled.main`
     }
 
     .photos-container {
-      padding-top: 4rem;
+      padding: 4rem 0;
 
       .loading {
         text-align: center;
+        padding: 3rem;
       }
     }
 

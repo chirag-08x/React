@@ -20,7 +20,12 @@ const Photo = (props) => {
           <h5>{name}</h5>
           <p>{likes} likes</p>
         </div>
-        <a href={portfolio_url} target="_blank" rel="noreferrer">
+        <a
+          href={portfolio_url}
+          style={{ cursor: portfolio_url ? "cursor" : null }}
+          target="_blank"
+          rel="noreferrer"
+        >
           <img src={medium} alt={name} />
         </a>
       </div>
@@ -67,9 +72,9 @@ const Wrapper = styled.article`
       }
     }
 
-    a {
+    /* a {
       cursor: pointer;
-    }
+    } */
 
     img {
       width: 40px;
