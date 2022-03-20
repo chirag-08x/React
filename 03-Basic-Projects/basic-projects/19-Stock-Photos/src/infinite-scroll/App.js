@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaSearch } from "react-icons/fa";
 import Photo from "./Photo";
 import "./index.css";
+import styled from "styled-components";
 
 // We don't want to give access to everyone to our client ID, that's why we set up our client Id in .evn, which we then add to gitignore.
 // We have to put the env file in the root component, location is important.
@@ -16,62 +17,29 @@ function App() {
   const [photos, setPhotos] = useState([]);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
-  // const mounted = useRef(false);
 
-  const fetchImages = async () => {
+  const fetchImages = async (url) => {
     setLoading(true);
-    let url;
-    const pageURL = `&page=${page}`;
-    const urlQuery = `&query=${query}`;
-
-    url = query
-      ? `${searchUrl}${clientID}${pageURL}${urlQuery}`
-      : `${mainUrl}${clientID}${pageURL}`;
     try {
       const response = await fetch(url);
       const data = await response.json();
       console.log(data);
-      setPhotos((oldPhotos) => {
-        if (query && page === 1) {
-          return data.results;
-        } else if (query) {
-          return [...oldPhotos, ...data.results];
-        } else {
-          return [...oldPhotos, ...data];
-        }
-      });
+      setPhotos((oldPhotos) => [...oldPhotos, ...data]);
       setLoading(false);
     } catch (error) {
-      setLoading(false);
       console.log(error);
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchImages();
-    // eslint-disable-next-line
+    const currURL = `${mainUrl}${clientID}&per_page=10&page=${page}`;
+    fetchImages(currURL);
   }, [page]);
 
-  // useEffect(() => {
-  //   if (!mounted.current) {
-  //     return;
-  //   }
-  //   console.log("Hello");
-  // }, []);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!query) return;
-    if (page === 1) {
-      fetchImages();
-      return;
-    }
-    setPage(1);
-  };
-
   const event = () => {
-    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) {
-      setPage(page + 1);
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 5) {
+      setPage((prev) => prev + 1);
     }
   };
 
@@ -80,28 +48,97 @@ function App() {
     return () => window.removeEventListener("scroll", event);
   }, []);
 
-  return (
-    <main className="photos">
-      <form className="form">
-        <input
-          type="text"
-          placeholder="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button className="btn" onClick={handleSubmit}>
-          <FaSearch />
-        </button>
-      </form>
+  const handleSubmit = () => {};
 
-      <section className="photos-center">
-        {photos.map((photo) => {
-          return <Photo key={photo.id} {...photo} />;
-        })}
+  return (
+    <Wrapper>
+      <section className="section-center">
+        <section className="search">
+          <form className="form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="search"
+            />
+            <button onClick={(e) => e.preventDefault()}>
+              <FaSearch />
+            </button>
+          </form>
+        </section>
+
+        <section className="photos-container">
+          <div className="photos">
+            {photos.map((photo) => (
+              <Photo key={photo.id} {...photo} />
+            ))}
+          </div>
+          {loading && <h2 className="loading">Loading...</h2>}
+        </section>
       </section>
-      {loading && <h2 className="loading">Loading....</h2>}
-    </main>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.main`
+  .section-center {
+    width: 90vw;
+    max-width: 1170px;
+    margin: 0 auto;
+
+    .search {
+      margin-top: 4rem;
+      width: 100%;
+      max-width: 35rem;
+      .form {
+        display: flex;
+        input {
+          width: 100%;
+          border: none;
+          border-bottom: 2px solid grey;
+          font-size: 1.5rem;
+          padding: 1rem;
+          ::placeholder {
+            text-transform: capitalize;
+            letter-spacing: 1px;
+          }
+        }
+
+        button {
+          border: none;
+          background: transparent;
+          border-bottom: 2px solid grey;
+          font-size: 1.5rem;
+          padding: 1rem;
+        }
+      }
+    }
+
+    .photos-container {
+      padding-top: 4rem;
+
+      .loading {
+        text-align: center;
+      }
+    }
+
+    .photos {
+      display: grid;
+      gap: 2rem 2rem;
+    }
+
+    @media (min-width: 853px) {
+      .photos {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1298px) {
+      .photos {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+`;
 
 export default App;

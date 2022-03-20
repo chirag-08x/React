@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 const Photo = (props) => {
   const {
@@ -12,19 +13,70 @@ const Photo = (props) => {
   } = props;
 
   return (
-    <article className="single-img-container">
-      <img src={regular} alt="" />
+    <Wrapper className="single-img-container">
+      <img src={regular} alt="" className="big-img" />
       <div className="img-footer">
         <div className="user-info">
-          <h5 className="user-name">{name}</h5>
-          <p className="likes">{likes} likes</p>
+          <h5>{name}</h5>
+          <p>{likes} likes</p>
         </div>
         <a href={portfolio_url} target="_blank" rel="noreferrer">
-          <img src={medium} alt={name} className="user-img" />
+          <img src={medium} alt={name} />
         </a>
       </div>
-    </article>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.article`
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    .img-footer {
+      transform: translateY(0);
+    }
+  }
+
+  .big-img {
+    height: 17.5rem;
+  }
+
+  .img-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(100%);
+    transition: var(--transition);
+
+    .user-info {
+      h5 {
+        color: var(--clr-white);
+        letter-spacing: 1px;
+        font-size: 1rem;
+      }
+
+      p {
+        color: var(--clr-white);
+      }
+    }
+
+    a {
+      cursor: pointer;
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+  }
+`;
 
 export default Photo;
