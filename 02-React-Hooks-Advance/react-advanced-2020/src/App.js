@@ -1,10 +1,10 @@
 import React from "react";
-import UseMemoHook from "./tutorial/12-memo-useMemo-useCallback/useMemo.jsx";
+import POST from "./tutorial/14-axios/3-post";
 
 function App() {
   return (
     <div className="container">
-      <UseMemoHook></UseMemoHook>
+      <POST />
     </div>
   );
 }
