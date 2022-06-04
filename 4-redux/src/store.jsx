@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./features/cart/cartSlice";
 
-// Reducer where we will do all our actions.
+// This is our whole state. A container for our whole state.
 export const store = configureStore({
   reducer: {
     cart: cartReducer,

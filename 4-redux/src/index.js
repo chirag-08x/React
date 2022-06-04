@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 
 const Index = () => {
   return (
+    // Similar to Context API, we wrap our whole app inside the Provider.
     <Provider store={store}>
       <App />
     </Provider>
