@@ -9,6 +9,8 @@ const url = "https://course-api.com/javascript-store-products";
 
 // every time props or state changes, component re-renders, so lets say we have a list of 10,000 items, then every time the counter value changes, that list of 10,000 elements is gonna re-render.
 
+// React.memo doesn't work with Array and Objects for that we need useMemo or useCallback.
+
 const Index = () => {
   const { products } = useFetch(url);
   const [count, setCount] = useState(0);

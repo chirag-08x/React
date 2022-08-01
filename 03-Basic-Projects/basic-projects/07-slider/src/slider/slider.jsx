@@ -1,59 +1,27 @@
-import people from "./data";
-import { useState, useRef, useEffect } from "react";
-import styled from "styled-components";
-import Person from "./person";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { useState, useRef } from "react";
+import data from "./data.js";
 
 const Slider = () => {
-  const [data, setData] = useState(people);
-  const refContainer = useRef("");
-
-  useEffect(() => {
-    const children = [...refContainer.current.children];
-  }, []);
+  const [state, setState] = useState([...data]);
 
   return (
-    <Wrapper>
-      <h1>
-        <span>/</span> reviews
-      </h1>
-
-      <section className="slider" ref={refContainer}>
-        {data.map((item) => {
-          return <Person key={item.id} {...item} />;
+    <section className="section-center">
+      <div className="main-container">
+        {state.map((item) => {
+          const { id, path } = item;
+          return (
+            <article key={id} className="container">
+              <img src={path} alt="hello world" />
+            </article>
+          );
         })}
-      </section>
-
-      <div className="btns">
-        <button className="btn">
-          <FaAngleLeft />
-        </button>
-
-        <button className="btn">
-          <FaAngleRight />
-        </button>
       </div>
-    </Wrapper>
+      <div className="btns-container">
+        <button className="prev-btn">Prev</button>
+        <button className="next-btn">Next</button>
+      </div>
+    </section>
   );
 };
-
-const Wrapper = styled.main`
-  display: grid;
-  place-items: center;
-  h1 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin: 4rem 0 2rem 0;
-  }
-
-  .slider {
-    width: 90vw;
-    max-width: 800px;
-    height: 450px;
-    margin: 0 auto;
-    /* display: flex; */
-    position: relative;
-  }
-`;
 
 export default Slider;
