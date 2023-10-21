@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const Error = () => {
   return (
     <div>
-      <h2>404</h2>
-      <p>page not found</p>
-      <Link to={"/"}>Back to Home</Link>
+      <h1>Page not found - 404</h1>
+      <h1>Go back to</h1>
+      <Link to={"/"}>Home Page</Link>
     </div>
   );
 };
