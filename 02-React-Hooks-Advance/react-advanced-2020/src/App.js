@@ -1,10 +1,10 @@
 import React from "react";
-import Memo from "./tutorial/12-memo-useMemo-useCallback/useMemo.jsx";
+import ReactUseCallback from "./tutorial/17-useCallback";
 
 function App() {
   return (
     <div className="container">
-      <Memo />
+      <ReactUseCallback />
     </div>
   );
 }
